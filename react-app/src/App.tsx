@@ -4,10 +4,13 @@ import Buttons from "./components/Buttons";
 function App() {
   return (
     <div>
-      {/* <Alert>
-        Hello <span>World</span>
-      </Alert> */}
-      <Buttons />
+      <Buttons color="success" onClick={() => console.log("clicked")}>
+        MyButton
+      </Buttons>
+      <Buttons onClick={() => console.log("clicked")}>MyButton</Buttons>
+      <Buttons color="primary" onClick={() => console.log("clicked")}>
+        MyButton
+      </Buttons>
     </div>
   );
 }

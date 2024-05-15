@@ -1,35 +1,19 @@
-function Buttons() {
-  return (
-    <div>
-      <button type="button" className="btn btn-primary">
-        Primary
-      </button>
-      <button type="button" className="btn btn-secondary">
-        Secondary
-      </button>
-      <button type="button" className="btn btn-success">
-        Success
-      </button>
-      <button type="button" className="btn btn-danger">
-        Danger
-      </button>
-      <button type="button" className="btn btn-warning">
-        Warning
-      </button>
-      <button type="button" className="btn btn-info">
-        Info
-      </button>
-      <button type="button" className="btn btn-light">
-        Light
-      </button>
-      <button type="button" className="btn btn-dark">
-        Dark
-      </button>
+import React from "react";
 
-      <button type="button" className="btn btn-link">
-        Link
-      </button>
-    </div>
-  );
+interface Props {
+  children: string;
+  onClick: () => void;
+  color?: "primary" | "secondary" | "danger" | "success";
 }
+
+const Buttons = ({ children, onClick, color = "primary" }: Props) => {
+  return (
+    <button className={"btn btn-" + color} onClick={onClick}>
+      {children}
+    </button>
+  );
+};
+
 export default Buttons;
+
+// const buttonsArr = ["Primary", "Secondary", "Success", "Danger", "Warning", "Info", "Light", "Dark", "Link"]
