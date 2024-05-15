@@ -5,7 +5,6 @@ ListGroup;
 function App() {
   return (
     <div>
-      {/* <Message /> */}
       <ListGroup />
     </div>
   );
