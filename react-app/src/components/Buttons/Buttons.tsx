@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import Alert from "./Alert";
+import { useState } from "react";
+import Alert from "../Alert";
+import css from "./Buttons.module.css";
 
 interface Props {
   children: string;
@@ -19,7 +20,7 @@ const Buttons = ({ children, color = "primary" }: Props) => {
         )}
       </div>
       <button
-        className={"btn btn-" + color}
+        className={[css.btn, css["btn-" + color]].join(" ")}
         onClick={() => setAlertVisible(true)}
       >
         {children}
