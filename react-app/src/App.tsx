@@ -4,21 +4,22 @@ import Like from "./components/Like/Like";
 import Message from "./components/Message/Message";
 
 function App() {
-  const [drink, setDrink] = useState({
-    title: "Americano",
-    price: 5,
+  const [customer, setCustomer] = useState({
+    name: "John",
+    address: {
+      city: "San Francisco",
+      zipCode: 9411,
+    },
   });
 
   const handleClick = () => {
-    setDrink({ ...drink, price: 6 });
+    setCustomer({
+      ...customer,
+      address: { ...customer.address, zipCode: 94112 },
+    });
   };
 
-  return (
-    <div>
-      {drink.price}
-      <button onClick={handleClick}>Click Me</button>
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
