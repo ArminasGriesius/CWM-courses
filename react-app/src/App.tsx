@@ -1,8 +1,5 @@
 import { useState } from "react";
-import Buttons from "./components/Buttons/Buttons";
-import Like from "./components/Like/Like";
-import Message from "./components/Message/Message";
-
+import produce from "immer";
 function App() {
   const [bugs, setBugs] = useState([
     { id: 1, title: "Bug1", fixed: false },
@@ -10,10 +7,27 @@ function App() {
   ]);
 
   const handleClick = () => {
-    setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    setBugs(
+      produce((draft) => {
+        const bug = draft.find((bug) => bug.id === 1);
+        if (bug) {
+          bug.fixed = true;
+        }
+      })
+    );
   };
 
-  return <div></div>;
+  return (
+    <div>
+      {bugs.map((bug) => (
+        <p key={bug.id}>
+          {bug.title} {bug.fixed ? "fixed" : "new"}
+        </p>
+      ))}
+      <button onClick={handleClick}>Click me</button>
+    </div>
+  );
 }
 
 export default App;

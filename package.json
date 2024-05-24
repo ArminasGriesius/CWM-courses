@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "immer": "^9.0.19"
   }
 }
