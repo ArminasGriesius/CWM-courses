@@ -1,31 +1,22 @@
 import { useState } from "react";
-import produce from "immer";
+import NavBar from "./components/NavBar";
+import Cart from "./components/Cart";
+
 function App() {
-  const [bugs, setBugs] = useState([
-    { id: 1, title: "Bug1", fixed: false },
-    { id: 2, title: "Bug2", fixed: false },
-  ]);
+  const [game, setGame] = useState({
+    id: 1,
+    player: {
+      name: "John",
+    },
+  });
 
   const handleClick = () => {
-    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
-    setBugs(
-      produce((draft) => {
-        const bug = draft.find((bug) => bug.id === 1);
-        if (bug) {
-          bug.fixed = true;
-        }
-      })
-    );
+    setGame({ ...game, player: { ...game.player, name: "Bob" } });
+    console.log(game);
   };
-
   return (
     <div>
-      {bugs.map((bug) => (
-        <p key={bug.id}>
-          {bug.title} {bug.fixed ? "fixed" : "new"}
-        </p>
-      ))}
-      <button onClick={handleClick}>Click me</button>
+      <button onClick={handleClick}>ClickMe</button>
     </div>
   );
 }
