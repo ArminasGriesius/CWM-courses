@@ -1,30 +1,14 @@
 import { useState } from "react";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
+import ExpandableText from "./components/ExpandableText.jsx/ExpandableText";
 
 function App() {
-  const [cart, setCart] = useState({
-    discount: 0.1,
-    items: [
-      { id: 1, title: "Product 1", quantity: 1 },
-      { id: 2, title: "Product 2", quantity: 1 },
-    ],
-  });
-
-  const handleClick = () => {
-    setCart({
-      ...cart,
-      items: cart.items.map((item) =>
-        item.id === 1 ? { ...item, quantity: item.quantity + 1 } : item
-      ),
-    });
-
-    console.log(cart);
-  };
   return (
-    <div>
-      <button onClick={handleClick}>ClickMe</button>
-    </div>
+    <ExpandableText
+      text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem modi inventore delectus iusto pariatur ducimus reprehenderit quam, ipsum similique maiores consectetur. Soluta quod, odio pariatur corrupti quaerat, aliquid quia, minima quos dignissimos amet quam! Voluptatem, praesentium rem? Aspernatur ut sapiente magni pariatur sed dolores nam numquam corrupti, est debitis omnis."
+      charQuantity={20}
+    />
   );
 }
 
