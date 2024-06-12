@@ -1,21 +1,30 @@
 import { useState } from "react";
 
 interface Props {
-  text: string;
-  charQuantity: number;
+  children: string;
+  charQuantity?: number;
 }
 
-const ExpandableText = ({ text, charQuantity }: Props) => {
-  const [showMore, setShowMore] = useState(true);
-  function showChars() {
-    setShowMore(!showMore);
-  }
+const ExpandableText = ({ children, charQuantity = 20 }: Props) => {
+  const [showMore, setShowMore] = useState(false);
 
   return (
     <>
       <p>
-        {showMore ? text : `${text.substring(0, charQuantity)}`}
-        <button onClick={showChars}>{showMore ? "less" : "more"}</button>
+        {showMore || children.length < charQuantity
+          ? children
+          : `${children.substring(0, charQuantity)}...`}
+        {children.length > charQuantity ? (
+          <button
+            onClick={() => {
+              setShowMore(!showMore);
+            }}
+          >
+            {showMore ? "less" : "more"}
+          </button>
+        ) : (
+          ""
+        )}
       </p>
     </>
   );
