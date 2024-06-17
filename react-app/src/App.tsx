@@ -1,16 +1,19 @@
-import ExpandableText from "./components/ExpandableText.jsx/ExpandableText";
+import { useState } from "react";
 
 function App() {
-  return (
-    <ExpandableText charQuantity={20}>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae fugiat
-      quas blanditiis porro, asperiores vitae esse magni expedita eius
-      dignissimos tempore alias libero molestias officia. Cumque distinctio
-      saepe neque molestiae voluptates labore dignissimos sunt similique est
-      eveniet accusamus architecto doloremque, velit quidem deleniti, quo
-      placeat non fuga corrupti nihil error!
-    </ExpandableText>
-  );
+  const [game, setGame] = useState({
+    id: 1,
+    player: {
+      name: "John",
+    },
+  });
+
+  const handleClick = () => {
+    setGame({ ...game, player: { ...game.player, name: "Bob" } });
+    console.log(game);
+  };
+
+  return <button onClick={handleClick}>ClickMe</button>;
 }
 
 export default App;
