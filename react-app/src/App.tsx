@@ -7,7 +7,7 @@ import FormExercise from "./components/FormExercise";
 function App() {
   return (
     <div>
-      <Form />
+      {/* <Form /> */}
       <FormExercise />
     </div>
   );
