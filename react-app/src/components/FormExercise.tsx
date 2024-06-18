@@ -7,9 +7,7 @@ const schema = z.object({
   description: z
     .string()
     .min(3, { message: "Description should be at least 3 characters" }),
-  amount: z
-    .number({ invalid_type_error: "Amount is required" })
-    .min(0.01, { message: "Nothing is free" }),
+  amount: z.coerce.number().min(0.01, { message: "Nothing is free" }),
   category: z.string({ invalid_type_error: "Amount is required" }),
 });
 
@@ -23,8 +21,17 @@ const FormExercise = () => {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = (data: FieldValues) => console.log(data);
+
+  const [itemList, setItemList] = useState([
+    { id: 1, description: "Ice", amount: 4, category: "groceries" },
+    { id: 2, description: "Icecream", amount: 8, category: "groceries" },
+  ]);
+
+  const submitHandle = (data: FormData) =>
+    setItemList([...itemList, { ...data, id: itemList.length + 1 }]);
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(submitHandle)}>
       <div className="mb-3">
         <label className="form-label" htmlFor="description">
           Description
@@ -98,12 +105,17 @@ const FormExercise = () => {
           </div>
           <div className="col border"></div>
           <div className="w-100 border"></div>
-          <div className="col border">Milk</div>
-          <div className="col border">5</div>
-          <div className="col border">Groceries</div>
-          <div className="col border">
-            <button className="btn btn-outline-danger">Delete</button>
-          </div>
+
+          {itemList.map((item) => (
+            <div key={item.id} className="row border">
+              <div className="col border">{item.description}</div>
+              <div className="col border">{item.amount}</div>
+              <div className="col border">{item.category}</div>
+              <div className="col border">
+                <button className="btn btn-outline-danger">Delete</button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </form>
