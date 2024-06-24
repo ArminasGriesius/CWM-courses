@@ -14,7 +14,10 @@ function App() {
   useEffect(() => {
     axios
       .get<User[]>("https://jsonplaceholder.typicode.com/users")
-      .then((response) => setUsers(response.data))
+      .then((response) => {
+        setUsers(response.data);
+        setError("");
+      })
       .catch((error) => {
         setError(error.message);
       });
