@@ -1,17 +1,21 @@
-import React, { FormEvent, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 function App() {
-  const [name, setName] = useState("");
+  const ref = useRef<HTMLInputElement>(null);
+
+  // After Render
+  useEffect(() => {
+    // Side effect
+    if (ref.current) ref.current.focus();
+  });
+
+  useEffect(() => {
+    document.title = "My App";
+  });
 
   return (
     <div>
-      <form>
-        <input
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        />
-      </form>
+      <input ref={ref} type="text" className="form-control" />
     </div>
   );
 }
